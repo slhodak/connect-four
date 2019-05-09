@@ -1,9 +1,30 @@
+var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  devServer: {
-    contentBase : path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
+  entry: {
+    './dist/app': path.resolve(__dirname, 'server/src/server.js')
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, './')
+  },
+
+  module: {
+    rules: [
+      {
+        test: [/\.js$/, /\.jsx?$/],
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/env', '@babel/preset-react']
+        }
+      }
+    ]
+  },
+  externals: {
+    'react/addons': true,
+    'react/lib/ReactContext': true,
+    'react/lib/ExecutionEnvironment': true
   }
 }
