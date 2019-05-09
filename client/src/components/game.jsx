@@ -36,6 +36,9 @@ class Game extends React.Component {
     });
   }
   addTokenToColumn(e) {
+    if (this.state.victor) {
+      return;
+    }
     let board = this.state.board;
     if (board[e.currentTarget.id].length < this.height) {
       board[e.currentTarget.id].push(this.state.turn);
@@ -47,6 +50,9 @@ class Game extends React.Component {
     }
   }
   triggerVictory(victor) {
+    this.setState({
+      victor: victor
+    });
     console.log('winner!', victor);
   }
   checkEndConditions() {
