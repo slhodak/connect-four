@@ -41,7 +41,19 @@ class Game extends React.Component {
       });
     }
   }
+  checkVerticalVictory() {
+    //  check if a column has four consecutive tokens of same player
 
+  }
+  checkHorizontalVictory() {
+
+  }
+  checkDiagonalVictory() {
+
+  }
+  checkForTies() {
+
+  }
   // Controller Functions
 
 
