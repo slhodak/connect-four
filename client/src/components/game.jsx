@@ -10,6 +10,11 @@ class Game extends React.Component {
 
     this.addTokenToColumn = this.addTokenToColumn.bind(this);
     this.componentWillMount = this.componentWillMount.bind(this);
+    this.checkEndConditions = this.checkEndConditions.bind(this);
+    this.checkVerticalVictory = this.checkVerticalVictory.bind(this);
+    this.checkHorizontalVictory = this.checkHorizontalVictory.bind(this);
+    this.checkDiagonalVictory = this.checkDiagonalVictory.bind(this);
+    this.triggerVictory = this.triggerVictory.bind(this);
   }
   // Model Functions
   componentWillMount() {
@@ -31,19 +36,45 @@ class Game extends React.Component {
     });
   }
   addTokenToColumn(e) {
-    console.log(this.state.board[e.currentTarget.id]);
     let board = this.state.board;
     if (board[e.currentTarget.id].length < this.height) {
-      board[e.currentTarget.id].push(this.state.turn.split('')[0].toUpperCase());
+      board[e.currentTarget.id].push(this.state.turn);
       this.setState({
         board: board,
-        turn: this.state.turn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
-      });
+        turn: this.state.turn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne,
+        currentColumn: e.currentTarget.id
+      }, this.checkEndConditions);
     }
   }
-  checkVerticalVictory() {
-    //  check if a column has four consecutive tokens of same player
-
+  triggerVictory(victor) {
+    console.log('winner!', victor);
+  }
+  checkEndConditions() {
+    let victor = this.checkVerticalVictory(this.state.currentColumn) || this.checkHorizontalVictory() || this.checkDiagonalVictory();
+    if (victor) {
+      this.triggerVictory(victor);
+    }
+  }
+  checkVerticalVictory(column) {
+    column = this.state.board[column];
+    console.log('column', column);
+    let p1consecutive = [];
+    let p2consecutive = [];
+    for (var i = 0; i < column.length; i++) {
+      if (column[i] === this.state.playerOne) {
+        p2consecutive = [];
+        p1consecutive.push(1);
+      } else if (column[i] === this.state.playerTwo) {
+        p1consecutive = [];
+        p2consecutive.push(1);
+      }
+    }
+    console.log('consec', p1consecutive);
+    if (p1consecutive.length === 4) {
+      return this.state.playerOne;
+    } else if (p2consecutive.length === 4) {
+      return this.state.playerTwo;
+    }
   }
   checkHorizontalVictory() {
 

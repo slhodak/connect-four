@@ -2,7 +2,6 @@ import React from 'react';
 import Cell from './cell.jsx';
 
 const Column = (props)=> {
-  // console.log(props.cells);
   const cells = [];
   for (var i = 0; i < props.height; i++) {
     props.cells[i] ? cells.push(props.cells[i]) : cells.push('');
