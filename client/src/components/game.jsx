@@ -20,6 +20,12 @@ class Game extends React.Component {
     this.setState({
       board: board
     });
+    let playerOne = window.prompt('Who will be player one?');
+    let playerTwo = window.prompt('Who will be player two?');
+    this.setState({
+      playerOne: playerOne,
+      playerTwo: playerTwo
+    });
   }
   addTokenToColumn(e) {
     // act on board column determined by e
