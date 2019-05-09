@@ -18,13 +18,24 @@ class App extends React.Component {
         ['', '', '', '', '', '']
       ]
     };
+
+    this.addTokenToColumn = this.addTokenToColumn.bind(this);
+  }
+  // Model Functions
+  addTokenToColumn(e) {
+    // act on board column determined by e
+    console.log(e.currentTarget);
   }
 
+  // Controller Functions
+
+
+  // View Function
   render() {
     return(
       <div>
         <h1>Connect Four</h1>
-        <Board board={this.state.board}/>
+        <Board board={this.state.board} dropToken={this.addTokenToColumn}/>
       </div>
     )
   }
