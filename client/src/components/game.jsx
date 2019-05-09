@@ -31,13 +31,15 @@ class Game extends React.Component {
     });
   }
   addTokenToColumn(e) {
-    // act on board column determined by e
     console.log(this.state.board[e.currentTarget.id]);
     let board = this.state.board;
-    board[e.currentTarget.id].push(this.state.turn.split('')[0].toUpperCase());
-    this.setState({
-      board: board
-    });
+    if (board[e.currentTarget.id].length < this.height) {
+      board[e.currentTarget.id].push(this.state.turn.split('')[0].toUpperCase());
+      this.setState({
+        board: board,
+        turn: this.state.turn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
+      });
+    }
   }
 
   // Controller Functions
