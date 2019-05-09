@@ -1,6 +1,6 @@
 ### NPM ###
-/node_modules
+node_modules
 
 
 ### webpack ###
-/dist/app.bundle.js
+dist/app.bundle.js
