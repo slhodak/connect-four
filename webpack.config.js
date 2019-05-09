@@ -2,14 +2,16 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: {
-    './dist/app': path.resolve(__dirname, 'src/index.js')
-  },
+  entry: path.resolve(__dirname, 'client/src/index.js'),
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, './')
+    filename: 'app.bundle.js'
   },
-
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    watchContentBase: true,
+    port: 3000
+  },
   module: {
     rules: [
       {
@@ -19,12 +21,21 @@ module.exports = {
         options: {
           presets: ['@babel/env', '@babel/preset-react']
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
-  },
-  externals: {
-    'react/addons': true,
-    'react/lib/ReactContext': true,
-    'react/lib/ExecutionEnvironment': true
   }
+  // loaders: [{
+  //   test: /ReactDOM/,
+  //   loader: 'expose-loader?ReactDOM!expose-loader?$'
+  // }],
+  // plugins: [
+  //   new webpack.ProvidePlugin({
+  //     "React": "React",
+  //     "ReactDOM": "ReactDOM"
+  //   })
+  // ]
 }
