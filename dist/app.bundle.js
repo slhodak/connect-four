@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./server/src/server.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./server/src/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./server/src/server.js":
-/*!******************************!*\
-  !*** ./server/src/server.js ***!
-  \******************************/
+/***/ "./server/src/index.js":
+/*!*****************************!*\
+  !*** ./server/src/index.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zZXJ2ZXIvc3JjL3NlcnZlci5qcy5qcyIsInNvdXJjZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./server/src/server.js\n");
+eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zZXJ2ZXIvc3JjL2luZGV4LmpzLmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./server/src/index.js\n");
 
 /***/ })
 
