@@ -23,8 +23,8 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <h1>This is the app</h1>
-        <Board />
+        <h1>Connect Four</h1>
+        <Board board={this.state.board}/>
       </div>
     )
   }

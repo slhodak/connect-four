@@ -1,3 +1,19 @@
 html {
   background-color: rgb(193, 255, 255);
 }
+
+#board {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+}
