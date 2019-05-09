@@ -19,10 +19,13 @@ class Game extends React.Component {
     }
     this.setState({
       board: board
-    });
-    let playerOne = window.prompt('Who will be player one?');
-    let playerTwo = window.prompt('Who will be player two?');
+    }, this.registerPlayers);
+  }
+  registerPlayers() {
+    let playerOne = window.prompt('Who will be player one?') || 'red';
+    let playerTwo = window.prompt('Who will be player two?') || 'blue';
     this.setState({
+      turn: playerOne,
       playerOne: playerOne,
       playerTwo: playerTwo
     });
@@ -31,7 +34,7 @@ class Game extends React.Component {
     // act on board column determined by e
     console.log(this.state.board[e.currentTarget.id]);
     let board = this.state.board;
-    board[e.currentTarget.id].push('red');
+    board[e.currentTarget.id].push(this.state.turn.split('')[0].toUpperCase());
     this.setState({
       board: board
     });
