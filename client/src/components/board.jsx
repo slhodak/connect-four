@@ -6,7 +6,10 @@ const Board = (props) => {
     <div id="board">
     {props.board.map((column, index) => {
       return(
-        <Column key={index} id={index} dropToken={props.dropToken} cells={column}/>
+        <Column key={index} id={index} 
+          dropToken={props.dropToken} 
+          cells={column} 
+          height={props.height}/>
       )
     })}
     </div>

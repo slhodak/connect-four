@@ -1,21 +1,22 @@
 import React from 'react';
 import Board from './board.jsx';
 
-class App extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
+    this.height = 6;
     this.state = {
       board: [
         // each array is a column. 7 wide, 6 high
         // each item is a cell
         // columns listed here left to right
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', ''],
-        ['', '', '', '', '', '']
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
       ]
     };
 
@@ -24,7 +25,12 @@ class App extends React.Component {
   // Model Functions
   addTokenToColumn(e) {
     // act on board column determined by e
-    console.log(e.currentTarget);
+    console.log(this.state.board[e.currentTarget.id]);
+    let board = this.state.board;
+    board[e.currentTarget.id].push('red');
+    this.setState({
+      board: board
+    });
   }
 
   // Controller Functions
@@ -35,10 +41,12 @@ class App extends React.Component {
     return(
       <div>
         <h1>Connect Four</h1>
-        <Board board={this.state.board} dropToken={this.addTokenToColumn}/>
+        <Board board={this.state.board} 
+          height={this.height} 
+          dropToken={this.addTokenToColumn}/>
       </div>
     )
   }
 };
 
-export default App;
+export default Game;

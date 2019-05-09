@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/app.jsx';
+import Game from './components/game.jsx';
 import './styles/styles.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Game />, document.getElementById('root'));
