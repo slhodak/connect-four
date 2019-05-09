@@ -24,9 +24,7 @@ class Game extends React.Component {
     }
     this.setState({
       board: board
-    }, this.registerPlayers);
-  }
-  registerPlayers() {
+    });
     let playerOne = window.prompt('Who will be player one?') || 'red';
     let playerTwo = window.prompt('Who will be player two?') || 'blue';
     this.setState({
@@ -39,6 +37,7 @@ class Game extends React.Component {
     if (this.state.victor) {
       return;
     }
+    console.log('got here');
     let board = this.state.board;
     if (board[e.currentTarget.id].length < this.height) {
       board[e.currentTarget.id].push(this.state.turn);
@@ -49,14 +48,9 @@ class Game extends React.Component {
       }, this.checkEndConditions);
     }
   }
-  triggerVictory(victor) {
-    this.setState({
-      victor: victor
-    });
-    console.log('winner!', victor);
-  }
   checkEndConditions() {
     let victor = this.checkVerticalVictory(this.state.currentColumn) || this.checkHorizontalVictory() || this.checkDiagonalVictory();
+    console.log(victor);
     if (victor) {
       this.triggerVictory(victor);
     }
@@ -83,17 +77,36 @@ class Game extends React.Component {
     }
   }
   checkHorizontalVictory() {
-
+    
   }
   checkDiagonalVictory() {
-
+    
   }
   checkForTies() {
-
+    
+  }
+  triggerVictory(victor) {
+    this.setState({
+      victor: victor
+    });
+    console.log('winner!', victor);
+    // this.postResult(victor);
+  }
+  postResult(victor) {
+    fetch('http://127.0.0.1:3000/victory', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(victor)
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
   // Controller Functions
-
-
+  
   // View Function
   render() {
     return(
