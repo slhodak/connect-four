@@ -15,6 +15,7 @@ class Game extends React.Component {
     this.checkHorizontalVictory = this.checkHorizontalVictory.bind(this);
     this.checkDiagonalVictory = this.checkDiagonalVictory.bind(this);
     this.triggerVictory = this.triggerVictory.bind(this);
+    this.postResult = this.postResult.bind(this);
   }
   // Model Functions
   componentWillMount() {
@@ -34,10 +35,10 @@ class Game extends React.Component {
     });
   }
   addTokenToColumn(e) {
+    console.log('got here');
     if (this.state.victor) {
       return;
     }
-    console.log('got here');
     let board = this.state.board;
     if (board[e.currentTarget.id].length < this.height) {
       board[e.currentTarget.id].push(this.state.turn);
@@ -49,15 +50,12 @@ class Game extends React.Component {
     }
   }
   checkEndConditions() {
-    let victor = this.checkVerticalVictory(this.state.currentColumn) || this.checkHorizontalVictory() || this.checkDiagonalVictory();
-    console.log(victor);
-    if (victor) {
-      this.triggerVictory(victor);
-    }
+    this.checkVerticalVictory(this.state.currentColumn);
+    this.checkHorizontalVictory();
+    this.checkDiagonalVictory();
   }
   checkVerticalVictory(column) {
     column = this.state.board[column];
-    console.log('column', column);
     let p1consecutive = [];
     let p2consecutive = [];
     for (var i = 0; i < column.length; i++) {
@@ -69,34 +67,31 @@ class Game extends React.Component {
         p2consecutive.push(1);
       }
     }
-    console.log('consec', p1consecutive);
     if (p1consecutive.length === 4) {
-      return this.state.playerOne;
+      this.setState({
+        victor: this.state.playerOne
+      }, this.triggerVictory);
     } else if (p2consecutive.length === 4) {
-      return this.state.playerTwo;
+      this.setState({
+        victor: this.state.playerTwo
+      }, this.triggerVictory);
     }
   }
   checkHorizontalVictory() {
-    
   }
   checkDiagonalVictory() {
-    
   }
   checkForTies() {
-    
   }
-  triggerVictory(victor) {
-    this.setState({
-      victor: victor
-    });
-    console.log('winner!', victor);
-    // this.postResult(victor);
+  triggerVictory() {
+    console.log('winner!', this.state.victor);
+    this.postResult(this.state.victor);
   }
   postResult(victor) {
     fetch('http://127.0.0.1:3000/victory', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(victor)
+      body: victor
     })
     .then(res => {
       console.log(res);
