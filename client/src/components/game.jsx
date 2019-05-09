@@ -5,24 +5,22 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.height = 6;
-    this.state = {
-      board: [
-        // each array is a column. 7 wide, 6 high
-        // each item is a cell
-        // columns listed here left to right
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
-      ]
-    };
+    this.width = 7;
+    this.state = {};
 
     this.addTokenToColumn = this.addTokenToColumn.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
   }
   // Model Functions
+  componentWillMount() {
+    let board = [];
+    for (var i = 0; i < this.width; i++) {
+      board.push([]);
+    }
+    this.setState({
+      board: board
+    });
+  }
   addTokenToColumn(e) {
     // act on board column determined by e
     console.log(this.state.board[e.currentTarget.id]);
