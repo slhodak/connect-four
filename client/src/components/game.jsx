@@ -35,7 +35,6 @@ class Game extends React.Component {
     });
   }
   addTokenToColumn(e) {
-    console.log('got here');
     if (this.state.victor) {
       return;
     }

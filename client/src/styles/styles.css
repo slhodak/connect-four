@@ -22,3 +22,13 @@ html {
   border: 1px solid black;
   text-align: center;
 }
+
+.red {
+  color: white;
+  background-color: red;
+}
+
+.blue {
+  color: white;
+  background-color: blue;
+}
