@@ -86,7 +86,6 @@ class Game extends React.Component {
     console.log('winner!', this.state.victor);
     this.postResult(this.state.victor);
   }
-  
   postResult(victor) {
     fetch('http://127.0.0.1:3000/victory', {
       method: 'POST',
@@ -95,7 +94,12 @@ class Game extends React.Component {
       body: JSON.stringify({victor: victor})
     })
     .then(res => {
-      console.log(res);
+      res.text()
+        .then(text => {
+          this.setState({
+            results: text
+          });
+        })
     })
     .catch(err => {
       console.log(err);
