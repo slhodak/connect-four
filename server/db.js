@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
-//  maybe must be with superuser
-const database = new Sequelize('connectfour', 'macuser', 'password', {
+const pw = require('./db.config.js');
+
+const database = new Sequelize('connectfour', 'macuser', pw, {
   host: 'localhost',
   dialect: 'postgres'
 });

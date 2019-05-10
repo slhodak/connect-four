@@ -4,3 +4,6 @@ node_modules
 
 ### webpack ###
 dist/app.bundle.js
+
+### pw ###
+server/db.config.js
