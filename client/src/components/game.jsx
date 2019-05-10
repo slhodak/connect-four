@@ -91,7 +91,8 @@ class Game extends React.Component {
     fetch('http://127.0.0.1:3000/victory', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: victor
+      mode: 'same-origin',
+      body: JSON.stringify({victor: victor})
     })
     .then(res => {
       console.log(res);
