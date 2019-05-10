@@ -17,13 +17,15 @@ db.database.sync({ force: eraseDatabaseOnSync }).then(() => {
 app.post('/victory', (req, res, next) => {
   console.log(`Handling ${req.method} request`);
   console.log(req.body.victor);
-  db.Board.upsert({victor: req.body.victor})
-    .then(([model, created]) => {
+  db.Board.create({victor: req.body.victor})
+    .then(board => {
       res.status(200);
+      console.log(board);
       res.send('nice');
     })
     .catch(err => {
       res.status(500);
+      console.log('giving err?', err);
       res.send(JSON.stringify(err));
     })
   //  load a victory page with a button to go back to the original
