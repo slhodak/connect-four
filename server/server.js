@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
-
+const eraseDatabaseOnSync = true;
 db.database.sync({ force: eraseDatabaseOnSync }).then(() => {
   app.listen(3000, () => {
     console.log('Listening on port 3000');
